@@ -50,6 +50,14 @@ public class Execute01 {
                                          With SELECT statement,  ResultSet will be created every time, so it will return true
                                          indicating that rows exist (even if they're empty at the moment)
 
+            SUMMARY:
+
+             The execute() method is designed to handle any type of SQL statement, not just queries.
+             Its versatility is one of its strengths.When it returns true, it signals that the SQL statement executed
+             was a query that generated a ResultSet.
+             If the execute() method were to return false, it would mean that the statement executed was an
+             update, insert, delete, or a DDL statement, which does not produce a ResultSet.
+
          */
         // Add a column to the employees table
         String query = "ALTER TABLE employees ADD COLUMN IF NOT EXISTS employee_address VARCHAR (50);";
@@ -81,3 +89,35 @@ public class Execute01 {
         }
     }
 }
+
+
+/*
+
+chatGPT Notes about execute() method:
+
+In JDBC (Java Database Connectivity), the execute() method can be used to execute any SQL statement.
+This method is designed to handle different types of SQL queries, including DDL (Data Definition Language),
+DML (Data Manipulation Language), and DQL (Data Query Language) statements. When dealing with DQL, specifically,
+the execute() method returns true for a couple of reasons:
+
+Result Set Indication: The primary reason is to indicate that the execution of the SQL statement has produced a ResultSet.
+DQL statements, such as SELECT queries, are expected to return data from the database. When execute() is called and
+a SELECT statement is executed, a ResultSet object is generated, which contains the data retrieved by the query.
+The method returning true signifies that this ResultSet is available and can be processed.
+
+Versatility of execute() Method: The execute() method is designed to handle any type of SQL statement, not just queries.
+ Its versatility is one of its strengths. When it returns true, it signals that the SQL statement executed was a query
+ that generated a ResultSet. If the execute() method were to return false, it would mean that the statement executed
+ was an update, insert, delete, or a DDL statement, which does not produce a ResultSet.
+
+Here’s a brief overview of how the execute() method works in the context of different types of SQL statements:
+
+SELECT Statements (DQL): These statements are meant to retrieve data from the database. When such a statement is
+executed, execute() returns true to indicate that a ResultSet has been produced.
+
+INSERT, UPDATE, DELETE Statements (DML): These statements modify the data in the database but do not
+produce a ResultSet. When such a statement is executed, execute() returns false.
+
+DDL Statements: These statements alter the schema of the database (e.g., CREATE TABLE, ALTER TABLE).
+These also do not produce a ResultSet, so execute() returns false.
+ */
