@@ -29,20 +29,32 @@ public class ExecuteQuery02 {
         ResultSet rs1 = st.executeQuery(query1);
 
         while (rs1.next()){
-//            System.out.println(rs1.getObject(1) + " , " + rs1.getObject(2)); OR
+//            System.out.println(rs2.getObject(1) + " , " + rs2.getObject(2)); OR
 
-//            System.out.println(rs1.getString(1) + " , " + rs1.getInt(2));  // precise data type + column index OR
+//            System.out.println(rs2.getString(1) + " , " + rs2.getInt(2));  // precise data type + column index OR
             System.out.println(rs1.getString("name") + " , " + rs1.getInt("grade"));  // precise data type + column names
         }
 
         System.out.println("========= HW TASK =========");
         // Print department name and grade of department which has the second-highest pass_grade
         // 1st way: Using SUB-QUERY
+        System.out.println("First way:");
+        String query2 = "SELECT department, pass_grade FROM departments WHERE pass_grade IN (SELECT MAX(pass_grade) AS second_highest_pass_grade FROM departments WHERE pass_grade < (SELECT MAX(pass_grade) FROM departments));";
+        ResultSet rs2 = st.executeQuery(query2);
+        while(rs2.next()){
+            System.out.println(rs2.getString(1) + " , " +rs2.getInt(2));
+        }
+
         // 2nd way: Using ORDER BY
 
+        System.out.println("Second way:");
 
+        String query3="SELECT department , pass_grade FROM departments ORDER BY  pass_grade DESC LIMIT 1 OFFSET 1";
+        ResultSet rs3=st.executeQuery(query3);
 
-
+        while(rs3.next()){
+            System.out.println(rs3.getString(1)+": "+ rs3.getInt(2));
+        }
 
         // Step 5: Close the statement and connection
         if (con != null){
