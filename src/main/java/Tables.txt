@@ -133,4 +133,13 @@ CREATE TABLE departments(
   ===========================================
 
 
+ CREATE TABLE accounts(
+         account_num int UNIQUE,
+         name VARCHAR(50),
+         amount real
+     );
+
+INSERT INTO accounts VALUES(1234, 'Fred',9500.50);
+INSERT INTO accounts VALUES(5678, 'Barnie',5500.80);
+
 

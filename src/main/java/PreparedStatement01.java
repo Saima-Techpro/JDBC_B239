@@ -97,8 +97,6 @@ public class PreparedStatement01 {
         prs.executeUpdate();
 
         // To see the data
-
-
         String query5 = "SELECT * FROM students";
 
         ResultSet rs5 = st.executeQuery(query5);
@@ -148,6 +146,9 @@ public class PreparedStatement01 {
         // Close the connection
 
         if (con != null){
+            prs1.close();
+            prs.close();
+            preparedStatement.close();
             st.close();
             con.close();
         }else {
