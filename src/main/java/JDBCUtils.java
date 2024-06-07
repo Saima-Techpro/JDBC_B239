@@ -16,10 +16,10 @@ public class JDBCUtils {
 
     // Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/jdbc_b239", "b239_user", "password");
 
-    public static Connection connectToDataBase(){
+    public static Connection connectToDataBase(String hostName, String dataBaseName, String userName, String password){
         //Connection connection = null;  // this is still local variable. Its scope is so limited.
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/jdbc_b239", "b239_user", "password");
+            connection = DriverManager.getConnection("jdbc:postgresql://"+hostName+":5432/"+dataBaseName, userName, password);
             System.out.println("Connection is successful");
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -126,29 +126,6 @@ public class JDBCUtils {
         return list;
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //    Step 5: Close the connection

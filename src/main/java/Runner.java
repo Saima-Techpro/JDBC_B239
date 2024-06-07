@@ -10,7 +10,7 @@ public class Runner {
 //        Step 2: Create connection with the DataBase
         // Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/jdbc_b239", "b239_user", "password");
 
-        JDBCUtils.connectToDataBase();
+        JDBCUtils.connectToDataBase("localhost","jdbc_b239","b239_user", "password");
 //        Step 3: Create a statement
         JDBCUtils.createStatement();
 //        Step 4: Execute the query
